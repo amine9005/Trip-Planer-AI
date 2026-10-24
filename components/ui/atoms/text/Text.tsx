@@ -6,24 +6,24 @@ import { cn } from "@/lib/utils";
 import { textVariants } from "./text.variants";
 
 function P({
-	className,
-	variant,
-	size,
-	asChild = false,
-	...props
+  className,
+  variant,
+  size,
+  asChild = false,
+  ...props
 }: React.ComponentProps<"p"> &
-	VariantProps<typeof textVariants> & {
-		asChild?: boolean;
-	}) {
-	const Comp = asChild ? Slot : "p";
+  VariantProps<typeof textVariants> & {
+    asChild?: boolean;
+  }) {
+  const Comp = asChild ? Slot : "p";
 
-	return (
-		<Comp
-			data-slot="p"
-			className={cn(textVariants({ variant, size, className }))}
-			{...props}
-		/>
-	);
+  return (
+    <Comp
+      data-slot="p"
+      className={cn(textVariants({ variant, size, className }))}
+      {...props}
+    />
+  );
 }
 
 export { P };

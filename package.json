@@ -3,10 +3,20 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 4000",
+    "email": "email dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix",
+    "format": "prettier --write \"**/*.{js,mjs,cjs,jsx,ts,tsx,css,json}\"",
+    "format:check": "prettier --check \"**/*.{js,mjs,cjs,jsx,ts,tsx,css,json}\"",
+    "prod": "yarn build && yarn start",
+    "light": "yarn unlighthouse",
+    "light:restart": "yarn rimraf .unlighthouse && yarn unlighthouse",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "CI": "yarn lint && yarn format:check && yarn prod"
   },
   "dependencies": {
     "@better-auth/stripe": "^1.7.12",
@@ -45,6 +55,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.4.3",
+    "prettier": "3.9.10",
     "tailwindcss": "^4",
     "typescript": "^5"
   },

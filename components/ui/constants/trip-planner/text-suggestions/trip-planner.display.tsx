@@ -1,114 +1,114 @@
 import { Globe, Landmark, Plane, Send } from "lucide-react";
 
 export const TripPlannerSuggestions = [
-	{
-		title: "Create A New Trip",
-		icon: <Globe className="size-5 text-blue-500" />,
-	},
-	{
-		title: "Inspire Me Where To Go",
-		icon: <Plane className="size-5 text-green-500" />,
-	},
-	{
-		title: "Discover Hidden Gems",
-		icon: <Landmark className="size-5 text-orange-500" />,
-	},
-	{
-		title: "Adventure Destination",
-		icon: <Send className="size-5 text-yellow-500" />,
-	},
+  {
+    title: "Create A New Trip",
+    icon: <Globe className="size-5 text-blue-500" />,
+  },
+  {
+    title: "Inspire Me Where To Go",
+    icon: <Plane className="size-5 text-green-500" />,
+  },
+  {
+    title: "Discover Hidden Gems",
+    icon: <Landmark className="size-5 text-orange-500" />,
+  },
+  {
+    title: "Adventure Destination",
+    icon: <Send className="size-5 text-yellow-500" />,
+  },
 ];
 
 export const SelectTravelList = [
-	{
-		id: 1,
+  {
+    id: 1,
 
-		title: "Just Me",
+    title: "Just Me",
 
-		desc: "A sole traveler in exploration",
+    desc: "A sole traveler in exploration",
 
-		icon: "✈️",
+    icon: "✈️",
 
-		prompt: "Solo",
-	},
+    prompt: "Solo",
+  },
 
-	{
-		id: 2,
+  {
+    id: 2,
 
-		title: "A Couple",
+    title: "A Couple",
 
-		desc: "Two travels in tandem",
+    desc: "Two travels in tandem",
 
-		icon: "🥂",
+    icon: "🥂",
 
-		prompt: "Couple",
-	},
+    prompt: "Couple",
+  },
 
-	{
-		id: 3,
+  {
+    id: 3,
 
-		title: "Family",
+    title: "Family",
 
-		desc: "A group of 3-5 people",
+    desc: "A group of 3-5 people",
 
-		icon: "🏡",
+    icon: "🏡",
 
-		prompt: "Family of 3-5 people ",
-	},
+    prompt: "Family of 3-5 people ",
+  },
 
-	{
-		id: 4,
+  {
+    id: 4,
 
-		title: "Friends",
+    title: "Friends",
 
-		desc: "A group of 5 to 10 People",
+    desc: "A group of 5 to 10 People",
 
-		icon: "⛵",
+    icon: "⛵",
 
-		prompt: "friends, 5 to 10 People",
-	},
+    prompt: "friends, 5 to 10 People",
+  },
 ];
 
 export const SelectBudgetOptions = [
-	{
-		id: 1,
+  {
+    id: 1,
 
-		title: "Cheap",
+    title: "Cheap",
 
-		desc: "Stay conscious of costs",
+    desc: "Stay conscious of costs",
 
-		icon: "💵",
+    icon: "💵",
 
-		color: "bg-green-100 text-green-600",
+    color: "bg-green-100 text-green-600",
 
-		prompt: "Low budget",
-	},
+    prompt: "Low budget",
+  },
 
-	{
-		id: 2,
+  {
+    id: 2,
 
-		title: "Moderate",
+    title: "Moderate",
 
-		desc: "Keep cost on the average side",
+    desc: "Keep cost on the average side",
 
-		icon: "💰",
+    icon: "💰",
 
-		color: "bg-yellow-100 text-yellow-600",
+    color: "bg-yellow-100 text-yellow-600",
 
-		prompt: "Medium budget",
-	},
+    prompt: "Medium budget",
+  },
 
-	{
-		id: 3,
+  {
+    id: 3,
 
-		title: "Luxury",
+    title: "Luxury",
 
-		desc: "Don't worry about cost",
+    desc: "Don't worry about cost",
 
-		icon: "💸",
+    icon: "💸",
 
-		color: "bg-purple-100 text-purple-600",
+    color: "bg-purple-100 text-purple-600",
 
-		prompt: "High budget",
-	},
+    prompt: "High budget",
+  },
 ];

@@ -9,33 +9,33 @@ import { redirect } from "next/navigation";
 const auth = await getAuth();
 
 export async function signUpAction(formData: SignUpSchemaType) {
-	const name = formData.username as string;
-	const email = formData.email as string;
-	const password = formData.password as string;
-	await auth.api.signUpEmail({
-		body: {
-			name,
-			email,
-			password,
-		},
-	});
+  const name = formData.username as string;
+  const email = formData.email as string;
+  const password = formData.password as string;
+  await auth.api.signUpEmail({
+    body: {
+      name,
+      email,
+      password,
+    },
+  });
 }
 
 export async function signInAction(formData: SignInSchemaType) {
-	const email = formData.email as string;
-	const password = formData.password as string;
-	const rememberMe = formData.remember as boolean;
-	await auth.api.signInEmail({
-		body: { email, password, rememberMe },
-	});
+  const email = formData.email as string;
+  const password = formData.password as string;
+  const rememberMe = formData.remember as boolean;
+  await auth.api.signInEmail({
+    body: { email, password, rememberMe },
+  });
 }
 
 export async function signOutAction() {
-	await auth.api.signOut({
-		headers: await headers(),
-	});
+  await auth.api.signOut({
+    headers: await headers(),
+  });
 
-	redirect("/");
+  redirect("/");
 }
 
 // export async function requestResetPasswordAction(email: string) {
@@ -75,13 +75,13 @@ export async function signOutAction() {
 // }
 
 export async function isAuthenticatedAction() {
-	const session = await auth.api.getSession({
-		headers: await headers(),
-	});
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
 
-	if (!session) {
-		return false;
-	}
+  if (!session) {
+    return false;
+  }
 
-	return true;
+  return true;
 }

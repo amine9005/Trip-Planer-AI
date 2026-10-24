@@ -5,30 +5,30 @@ import { useAiSendMessageHook } from "@/hooks/submit/useAiSendMessage.submit";
 import { useTripPlanHook } from "@/hooks/submit/useTripPlan.submit";
 
 const ChatBoxAction = () => {
-	const { isLoading, messages, userMessage, setUserMessage, onSend, isFinal } =
-		useAiSendMessageHook();
+  const { isLoading, messages, userMessage, setUserMessage, onSend, isFinal } =
+    useAiSendMessageHook();
 
-	const { generateTripAndSaveTrip } = useTripPlanHook();
+  const { generateTripAndSaveTrip } = useTripPlanHook();
 
-	useEffect(() => {
-		console.log("use final: ", isFinal);
+  useEffect(() => {
+    console.log("use final: ", isFinal);
 
-		if (isFinal) generateTripAndSaveTrip();
+    if (isFinal) generateTripAndSaveTrip();
 
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [isFinal]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isFinal]);
 
-	return (
-		<ChatBoxOrganism
-			href={""}
-			isLoading={isLoading}
-			isFinal={isFinal}
-			messages={messages}
-			userMessage={userMessage}
-			setUserMessage={setUserMessage}
-			onSend={onSend}
-		/>
-	);
+  return (
+    <ChatBoxOrganism
+      href={""}
+      isLoading={isLoading}
+      isFinal={isFinal}
+      messages={messages}
+      userMessage={userMessage}
+      setUserMessage={setUserMessage}
+      onSend={onSend}
+    />
+  );
 };
 
 export default ChatBoxAction;

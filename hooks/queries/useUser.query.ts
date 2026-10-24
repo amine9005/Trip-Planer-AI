@@ -7,32 +7,32 @@ import { useQuery } from "@tanstack/react-query";
 
 // Custom hook to fetch User using React Query
 export const useUserQuery = () => {
-	// Define the API endpoint for fetching the User
-	const fetchUser = async () => {
-		const response = await getSession();
+  // Define the API endpoint for fetching the User
+  const fetchUser = async () => {
+    const response = await getSession();
 
-		return response ? response : null;
-	};
-	return useQuery({
-		queryFn: fetchUser,
-		queryKey: ["user"],
-		staleTime: 5,
-	});
+    return response ? response : null;
+  };
+  return useQuery({
+    queryFn: fetchUser,
+    queryKey: ["user"],
+    staleTime: 5,
+  });
 };
 
 export const useGetSubscriptionQuery = (id: string | undefined) => {
-	const getSubscription = async (): Promise<SubscriptionDataType | null> => {
-		if (!id) return null;
-		const resp = await axiosInstance.get(
-			apiPaths.SUBSCRIPTION_ROUTES.GET.SUBSCRIPTION_BY_ID + id,
-		);
-		// console.log("response from server ", resp);
-		return resp.data.result ? resp.data.result : null;
-	};
+  const getSubscription = async (): Promise<SubscriptionDataType | null> => {
+    if (!id) return null;
+    const resp = await axiosInstance.get(
+      apiPaths.SUBSCRIPTION_ROUTES.GET.SUBSCRIPTION_BY_ID + id,
+    );
+    // console.log("response from server ", resp);
+    return resp.data.result ? resp.data.result : null;
+  };
 
-	return useQuery({
-		queryFn: getSubscription,
-		queryKey: ["subscription"],
-		staleTime: 15,
-	});
+  return useQuery({
+    queryFn: getSubscription,
+    queryKey: ["subscription"],
+    staleTime: 15,
+  });
 };

@@ -8,69 +8,69 @@ import LabelWithSideLink from "@/components/ui/molecules/label-with-side-link/La
 import FormsCheckBoxMolecule from "@/components/ui/molecules/forms-checkbox/FormsCheckBox.molecule";
 
 interface Props {
-	form: SignInFormType;
-	handle_submit: (formEvent: FormEvent) => void;
-	formName: string;
+  form: SignInFormType;
+  handle_submit: (formEvent: FormEvent) => void;
+  formName: string;
 }
 
 const emailInputValues = {
-	name: "email",
-	labelTitle: "Email",
-	type: "email",
-	placeholder: "John@mail.com ",
-	autoComplete: "off",
+  name: "email",
+  labelTitle: "Email",
+  type: "email",
+  placeholder: "John@mail.com ",
+  autoComplete: "off",
 };
 
 const passwordLabelValues = {
-	labelText: "Password",
-	href: "/request-reset-password",
-	linkText: "Forgot Password?",
+  labelText: "Password",
+  href: "/request-reset-password",
+  linkText: "Forgot Password?",
 };
 
 const passwordInputValues = {
-	name: "password",
-	labelTitle: <LabelWithSideLink values={passwordLabelValues} />,
-	type: "password",
-	placeholder: "Your password ",
-	autoComplete: "off",
+  name: "password",
+  labelTitle: <LabelWithSideLink values={passwordLabelValues} />,
+  type: "password",
+  placeholder: "Your password ",
+  autoComplete: "off",
 };
 
 const LoginFormContent = ({ form, formName, handle_submit }: Props) => {
-	const checkboxValues = { labelTitle: "Remember Me", form };
+  const checkboxValues = { labelTitle: "Remember Me", form };
 
-	return (
-		<form id={formName} onSubmit={handle_submit}>
-			<FieldGroup>
-				<Controller
-					name="email"
-					control={form?.control}
-					render={({ field, fieldState }) => (
-						<InputField
-							field={field}
-							fieldState={fieldState}
-							item={emailInputValues}
-						/>
-					)}
-				/>{" "}
-				<Controller
-					name="password"
-					control={form?.control}
-					render={({ field, fieldState }) => (
-						<InputField
-							field={field}
-							fieldState={fieldState}
-							item={passwordInputValues}
-						/>
-					)}
-				/>
-				<FormsCheckBoxMolecule
-					checkFor="remember"
-					values={checkboxValues}
-					className="mt-4"
-				/>
-			</FieldGroup>
-		</form>
-	);
+  return (
+    <form id={formName} onSubmit={handle_submit}>
+      <FieldGroup>
+        <Controller
+          name="email"
+          control={form?.control}
+          render={({ field, fieldState }) => (
+            <InputField
+              field={field}
+              fieldState={fieldState}
+              item={emailInputValues}
+            />
+          )}
+        />{" "}
+        <Controller
+          name="password"
+          control={form?.control}
+          render={({ field, fieldState }) => (
+            <InputField
+              field={field}
+              fieldState={fieldState}
+              item={passwordInputValues}
+            />
+          )}
+        />
+        <FormsCheckBoxMolecule
+          checkFor="remember"
+          values={checkboxValues}
+          className="mt-4"
+        />
+      </FieldGroup>
+    </form>
+  );
 };
 
 export default LoginFormContent;

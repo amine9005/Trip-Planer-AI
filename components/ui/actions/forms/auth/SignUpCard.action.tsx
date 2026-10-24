@@ -6,24 +6,24 @@ import SignUpFormCard from "@/components/ui/organisms/signup/SignUpCard.organism
 import { useSignUpSubmit } from "@/hooks/submit/useAuthSubmit.hook";
 
 const SignInCardAction = () => {
-	const form = useSignUp();
-	const { handleSubmit } = form;
-	const { onSubmit, loading } = useSignUpSubmit(form);
+  const form = useSignUp();
+  const { handleSubmit } = form;
+  const { onSubmit, loading } = useSignUpSubmit(form);
 
-	const card = { title: "Welcome, Sign Up", description: "" };
+  const card = { title: "Welcome, Sign Up", description: "" };
 
-	return (
-		<FormLayout>
-			{" "}
-			<SignUpFormCard
-				loading={loading}
-				form={form}
-				card={card}
-				formName="sign-in"
-				handle_submit={handleSubmit(onSubmit)}
-			/>
-		</FormLayout>
-	);
+  return (
+    <FormLayout>
+      {" "}
+      <SignUpFormCard
+        loading={loading}
+        form={form}
+        card={card}
+        formName="sign-in"
+        handle_submit={handleSubmit(onSubmit)}
+      />
+    </FormLayout>
+  );
 };
 
 export default memo(SignInCardAction);

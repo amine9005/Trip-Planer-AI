@@ -4,14 +4,14 @@ import { TripPlannerSuggestions } from "@/components/ui/constants/trip-planner/t
 import { useAiSendMessageHook } from "@/hooks/submit/useAiSendMessage.submit";
 import { DisplayType } from "@/types/general.types";
 const SuggestionsAction = ({ display }: DisplayType) => {
-	const { onSend } = useAiSendMessageHook();
-	return (
-		<TextSuggestionsMolecule
-			onSend={onSend}
-			display={display}
-			suggestions={TripPlannerSuggestions}
-		/>
-	);
+  const { onSend } = useAiSendMessageHook();
+  return (
+    <TextSuggestionsMolecule
+      onSend={onSend}
+      display={display}
+      suggestions={TripPlannerSuggestions}
+    />
+  );
 };
 
 export default SuggestionsAction;

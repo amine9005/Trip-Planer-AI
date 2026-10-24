@@ -5,20 +5,20 @@ import { MessageAISchemaType } from "@/validations/AI.zod";
 import { apiPaths } from "@/helpers/routes.helper";
 
 interface Props {
-	messages: MessageAISchemaType[];
-	isFinal: boolean;
+  messages: MessageAISchemaType[];
+  isFinal: boolean;
 }
 
 export const useAI_Mutation = () => {
-	const susePromptAI_RequestFn = async ({ messages, isFinal }: Props) => {
-		const response = await axiosInstance.post(apiPaths.AI_ROUTES.POST.GOOGLE, {
-			messages,
-			isFinal,
-		});
-		return response;
-	};
+  const susePromptAI_RequestFn = async ({ messages, isFinal }: Props) => {
+    const response = await axiosInstance.post(apiPaths.AI_ROUTES.POST.GOOGLE, {
+      messages,
+      isFinal,
+    });
+    return response;
+  };
 
-	return useMutation({
-		mutationFn: susePromptAI_RequestFn,
-	});
+  return useMutation({
+    mutationFn: susePromptAI_RequestFn,
+  });
 };
