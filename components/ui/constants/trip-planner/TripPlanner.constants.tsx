@@ -1,0 +1,61 @@
+import { PricingCardProps } from "@/types/pricing.types";
+
+export const PricingListData: PricingCardProps[] = [
+  {
+    title: "Free",
+    popular: 0,
+    price: 0,
+    description:
+      "Get Started And Create beautiful Trips For You, Your Family And Friends",
+    buttonText: "Get Started",
+    benefitList: ["10 Trip Plans Per Month"],
+    href: "/sign-in",
+    plan: "free",
+    successUrl: "/pricing",
+    returnUrl: "/pricing",
+    cancelUrl: "/pricing",
+    redirectUrl: "/pricing",
+    billing: "/month",
+  },
+  {
+    title: "Premium",
+    popular: 1,
+    price: 4.99,
+    description: "Best For Serious Explorers and Travelers.",
+    buttonText: "Upgrade",
+    benefitList: [
+      "Unlimited Trip Plans",
+      "90 Days Trip History",
+      "24/7 Email Support",
+      "3D Place On Map",
+    ],
+    href: "/sign-in",
+    plan: "premium",
+    successUrl: "/pricing",
+    returnUrl: "/pricing",
+    cancelUrl: "/pricing",
+    redirectUrl: "/pricing",
+    billing: "/month",
+  },
+
+  {
+    title: "Explorer",
+    popular: 0,
+    price: 45.99,
+    description: "Best For Serious Explorers and Travelers and Journalist.",
+    buttonText: "Upgrade",
+    benefitList: [
+      "Unlimited Trip Plans",
+      "90 Days Trip History",
+      "24/7 Email Support",
+      "3D Place On Map",
+    ],
+    href: "/sign-in",
+    plan: "yearly",
+    successUrl: "/pricing",
+    returnUrl: "/pricing",
+    cancelUrl: "/pricing",
+    redirectUrl: "/pricing",
+    billing: "/year",
+  },
+];
