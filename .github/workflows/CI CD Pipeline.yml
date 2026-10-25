@@ -40,11 +40,6 @@ jobs:
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           BETTER_AUTH_SECRET: ${{ secrets.BETTER_AUTH_SECRET }}
-          EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
-          MUX_TOKEN_ID: ${{ secrets.MUX_TOKEN_ID }}
-          MUX_TOKEN_SECRET: ${{ secrets.MUX_TOKEN_SECRET }}
-          MY_EMAIL_ADDRESS: ${{ secrets.MY_EMAIL_ADDRESS }}
-          RESEND_SECRET: ${{ secrets.RESEND_SECRET }}
           BETTER_AUTH_URL: ${{ secrets.BETTER_AUTH_URL }}
         run: yarn build
 

@@ -6,14 +6,15 @@ import {
   NavigationMenuLink,
 } from "@/components/ui/atoms/navigation-menu/navigation-menu";
 
-import { buttonVariants } from "@/components/ui/atoms/button/button";
+import { Button, buttonVariants } from "@/components/ui/atoms/button/button";
 import Link from "next/link";
 import MenuButtonMolecule from "@/components/ui/molecules/menu-button/MenuButton.molecule";
 import { motion } from "motion/react";
 import { useState } from "react";
-import { Plane } from "lucide-react";
+import { LogOut, Plane } from "lucide-react";
 import { H2 } from "@/components/ui/atoms/heading/heading2";
 import { useUserQuery } from "@/hooks/queries/useUser.query";
+import { signOutAction } from "@/app/api/actions/auth/auth.controller";
 interface RouteProps {
   href: string;
   label: string;
@@ -42,7 +43,7 @@ const Navbar2Organism = () => {
       bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60 min-h-15`}
     >
       <NavigationMenu className="flex overflow-hidden flex-col items-center justify-center">
-        <NavigationMenuList className="px-2 md:px-12 w-screen min-h-14 flex justify-between md:grid md:grid-cols-3 ">
+        <NavigationMenuList className="px-2 md:px-12 w-screen min-h-14 flex justify-between lg:grid lg:grid-cols-3 ">
           <NavigationMenuItem className="font-bold ">
             <Link
               rel="noreferrer noopener"
@@ -53,7 +54,7 @@ const Navbar2Organism = () => {
               <H2>Trip Planner AI</H2>
             </Link>
           </NavigationMenuItem>
-          <NavigationMenuList className="hidden md:flex gap-2 col-span-1">
+          <NavigationMenuList className="hidden lg:flex gap-2 col-span-1">
             {routeList.map((route: RouteProps, i) => (
               <NavigationMenuItem key={i}>
                 <NavigationMenuLink asChild className="hover:bg-transparent ">
@@ -82,27 +83,38 @@ const Navbar2Organism = () => {
             )}
           </NavigationMenuList>
           <MenuButtonMolecule isOpen={isOpen} setIsOpen={setIsOpen} />
-          <div className="hidden md:flex w-full justify-end">
+          <div className="hidden lg:flex w-full justify-end gap-4">
             <Link
               className={buttonVariants({
                 variant: "default",
                 size: "sm",
-                className: "py-4",
                 width: "lg",
               })}
               href={link}
             >
               {text}
             </Link>
+            {user && (
+              <Button
+                rel="noreferrer noopener"
+                type="submit"
+                className={`border ${buttonVariants({ variant: "secondary" })}`}
+                onClick={signOutAction}
+              >
+                Logout
+                <LogOut className="w-4 h-4 ml-2" />
+              </Button>
+            )}
           </div>{" "}
         </NavigationMenuList>
 
+        {/* Mobile View */}
         <motion.div
           initial={{ height: 0 }}
           animate={{ height: isOpen ? "auto" : "0px" }}
           transition={{ duration: 0.3 }}
         >
-          <NavigationMenuList className="md:hidden flex flex-col justify-center items-center">
+          <NavigationMenuList className="lg:hidden flex flex-col justify-center items-center">
             {routeList.map((route: RouteProps, i) => (
               <NavigationMenuItem key={i}>
                 <NavigationMenuLink asChild>
@@ -119,14 +131,13 @@ const Navbar2Organism = () => {
                 </NavigationMenuLink>
               </NavigationMenuItem>
             ))}
-            <NavigationMenuItem className="mb-4">
+            <NavigationMenuItem className="">
               <NavigationMenuLink asChild>
                 <Link
                   onClick={() => setIsOpen(false)}
                   className={buttonVariants({
                     variant: "default",
                     size: "sm",
-                    className: "py-4",
                     width: "lg",
                   })}
                   href={link}
@@ -136,17 +147,28 @@ const Navbar2Organism = () => {
               </NavigationMenuLink>
             </NavigationMenuItem>
             {user && (
-              <NavigationMenuItem>
-                <NavigationMenuLink asChild className="hover:bg-transparent ">
-                  <Link
-                    rel="noreferrer noopener"
-                    href={"/trips"}
-                    className="text-[17px] hover:scale-105 transition-transform duration-200 hover:text-primary"
-                  >
-                    My Trips
-                  </Link>
-                </NavigationMenuLink>
-              </NavigationMenuItem>
+              <>
+                <NavigationMenuItem>
+                  <NavigationMenuLink asChild className="hover:bg-transparent ">
+                    <Link
+                      rel="noreferrer noopener"
+                      href={"/trips"}
+                      className="text-[17px] hover:scale-105 transition-transform duration-200 hover:text-primary"
+                    >
+                      My Trips
+                    </Link>
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+                <Button
+                  rel="noreferrer noopener"
+                  type="submit"
+                  className={`border ${buttonVariants({ variant: "secondary" })} mb-2`}
+                  onClick={signOutAction}
+                >
+                  Logout
+                  <LogOut className="w-4 h-4 ml-2" />
+                </Button>
+              </>
             )}
           </NavigationMenuList>
         </motion.div>

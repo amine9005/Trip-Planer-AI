@@ -11,7 +11,7 @@ const MenuButtonMolecule = ({ isOpen, setIsOpen }: MenuButtonProps) => {
   return (
     <Button
       name="Navigation Button"
-      className="md:hidden"
+      className="lg:hidden"
       onClick={() => setIsOpen(!isOpen)}
     >
       {isOpen ? <XIcon className="size-6" /> : <MenuIcon className="size-6" />}
