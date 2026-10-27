@@ -5,6 +5,7 @@ import { P } from "@/components/ui/atoms/text/Text";
 import { ExternalLink, TicketCheckIcon, Timer } from "lucide-react";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/atoms/button/button.variants";
+import { useState } from "react";
 
 const ActivityCard = ({
   activity,
@@ -13,10 +14,17 @@ const ActivityCard = ({
   activity: ActivityType;
   place_image: string;
 }) => {
+  const [imageSrcState, setImageSrcState] = useState<string | undefined>(
+    place_image,
+  );
+
   return (
     <div className={"flex flex-col justify-between gap-2 h-120 max-h-120"}>
       <Image
-        src={place_image ? place_image : "/travel-placeholder.jpg"}
+        src={imageSrcState ? imageSrcState : "/travel-placeholder.jpg"}
+        onError={() => {
+          setImageSrcState("/travel-placeholder.jpg");
+        }}
         width={400}
         height={200}
         alt={"/travel-placeholder.jpg"}

@@ -40,3 +40,14 @@ export const useUnsplashImagesQuery = () => {
     },
   });
 };
+
+export const checkIfImageIsAvailable = async (url: string) => {
+  try {
+    const resp = await axiosInstance.get(url);
+    console.log("is image available resp: ", resp);
+    return resp;
+  } catch (error) {
+    console.log("is image available error: ", error);
+    return null;
+  }
+};

@@ -50,36 +50,30 @@ const AllTripsAction = () => {
     );
   }
 
-  // const getImageUrl = async (index:number) => {
-  //   if (!data)return
-
-  //   data[index].itinerary.forEach((itinerary, idx)=>{
-  //     if (await import(itinerary.activities[0].place_image_url))
-  //     {
-
-  //     }
-  //   })
-
-  // }
-
   return (
     <div className="relative flex mx-auto justify-center items-center w-full ">
       <div className="relative grid  grid-cols-1 md:grid-cols-3 xl:grid-cols-4  gap-8 mt-10 max-w-7xl">
         {data &&
-          data.map((item, idx) => (
-            <BlurFade onlyOnce={false} key={idx} delay={0.3 + idx * 0.1} inView>
-              <TripCard
+          data.map(async (item, idx) => {
+            return (
+              <BlurFade
+                onlyOnce={false}
                 key={idx}
-                trip={item}
-                imageSrc={item.itinerary[0].activities[0].place_image_url}
-                // imageSrc2={
-                //   item.itinerary[1].activities[0].place_image_url
-                //     ? item.itinerary[1].activities[0].place_image_url
-                //     : undefined
-                // }
-              />
-            </BlurFade>
-          ))}
+                delay={0.3 + idx * 0.1}
+                inView
+              >
+                <TripCard
+                  key={idx}
+                  trip={item}
+                  // imageSrc2={
+                  //   item.itinerary[1].activities[0].place_image_url
+                  //     ? item.itinerary[1].activities[0].place_image_url
+                  //     : undefined
+                  // }
+                />
+              </BlurFade>
+            );
+          })}
       </div>
     </div>
   );
