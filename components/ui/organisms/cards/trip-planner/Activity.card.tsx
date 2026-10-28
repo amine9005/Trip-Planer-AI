@@ -5,28 +5,28 @@ import { P } from "@/components/ui/atoms/text/Text";
 import { ExternalLink, TicketCheckIcon, Timer } from "lucide-react";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/atoms/button/button.variants";
-import { useState } from "react";
 
 const ActivityCard = ({
   activity,
-  place_image,
+  imageSrc,
+  setFailedImage,
 }: {
   activity: ActivityType;
-  place_image: string;
+  imageSrc: string | null;
+  setFailedImage: (value: boolean) => void;
 }) => {
-  const [imageSrcState, setImageSrcState] = useState<string | undefined>(
-    place_image,
-  );
-
   return (
     <div className={"flex flex-col justify-between gap-2 h-120 max-h-120"}>
       <Image
-        src={imageSrcState ? imageSrcState : "/travel-placeholder.jpg"}
+        src={imageSrc ? imageSrc : "/travel-placeholder.jpg"}
         onError={() => {
-          setImageSrcState("/travel-placeholder.jpg");
+          setFailedImage(true);
         }}
         width={400}
         height={200}
+        loading="eager"
+        quality={75}
+
         alt={"/travel-placeholder.jpg"}
         className="object-cover rounded-xl w-full h-50 mb-2"
       />

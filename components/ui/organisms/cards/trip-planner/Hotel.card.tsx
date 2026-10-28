@@ -6,32 +6,31 @@ import { Hotel } from "@/db/models/Hotel.model";
 import { ExternalLink, Star, Wallet } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
 
 const HotelCard = ({
   hotel,
   idx,
   imageSrc,
+  setFailedImage,
 }: {
   hotel: Hotel;
   idx: number;
-  imageSrc?: string;
+  imageSrc: string | null;
+  setFailedImage: (value: boolean) => void;
 }) => {
-  const [imageSrcState, setImageSrcState] = useState<string | undefined>(
-    imageSrc,
-  );
-
   return (
     <div
       key={idx}
       className="flex flex-col justify-between gap-1 h-120 max-h-120"
     >
       <Image
-        src={imageSrcState ? imageSrcState : "/hotel-building-concept.jpg"}
+        src={imageSrc ? imageSrc : "/hotel-building-concept.jpg"}
         width={400}
         height={200}
+        loading="eager"
+        quality={75}
         onError={() => {
-          setImageSrcState("/hotel-building-concept.jpg");
+          setFailedImage(true);
         }}
         alt={"/hotel-building-concept.jpg"}
         className="rounded-xl object-cover w-full h-50 shadow pb-2"

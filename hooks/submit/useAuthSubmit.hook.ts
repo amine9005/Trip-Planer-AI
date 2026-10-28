@@ -102,7 +102,7 @@ export function useSignUpSubmit(form: SignUpFormType) {
       }
 
       if (success) {
-        // redirect("/verify-email");
+        redirect("/");
       }
       setLoading(false);
     },

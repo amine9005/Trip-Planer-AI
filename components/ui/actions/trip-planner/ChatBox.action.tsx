@@ -11,7 +11,7 @@ const ChatBoxAction = () => {
   const { generateTripAndSaveTrip } = useTripPlanHook();
 
   useEffect(() => {
-    console.log("use final: ", isFinal);
+    // console.log("use final: ", isFinal);
 
     if (isFinal) generateTripAndSaveTrip();
 

@@ -49,6 +49,7 @@ export interface SelectByIconType {
 export interface TripPlanType {
   _id?: string;
   destination: string;
+  thumbnail: string;
   duration: string;
   origin: string;
   budget: string;

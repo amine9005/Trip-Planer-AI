@@ -20,6 +20,10 @@ export async function POST(req: NextRequest) {
       itinerary,
     } = await req.json();
 
+    const max = itinerary.length - 1;
+    const choice = Math.floor(Math.random() * (max - 0));
+    const thumbnail = itinerary[choice].activities[0].place_name;
+    console.log("thumbnail: ", thumbnail);
     // const hotelsDoc = await saveArrayToMongoDB({
     //   collection: hotels,
     //   db_name: "hotel",
@@ -36,7 +40,6 @@ export async function POST(req: NextRequest) {
         return hotel._id;
       }),
     );
-
     const itinerariesDoc = await Promise.all(
       itinerary.map(async (item: ItineraryType) => {
         const activitiesArray = item.activities;
@@ -70,6 +73,7 @@ export async function POST(req: NextRequest) {
       userId,
       destination,
       duration,
+      thumbnail,
       origin,
       budget,
       travel_interests,

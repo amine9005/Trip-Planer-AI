@@ -31,6 +31,7 @@ export function useGetRandomPlaceHolderImageQuery(placeName: string) {
 export const useTripsQuery = (id: string | undefined) => {
   // Define the API endpoint for fetching the trips
   // console.log("id ", id);
+
   const fetchTrips = async (): Promise<TripPlanType[] | null> => {
     if (!id) return null; // Return an empty array if no id is provided
     const response = await axiosInstance.get(

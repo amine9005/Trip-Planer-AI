@@ -1,7 +1,7 @@
 import { P } from "@/components/ui/atoms/text/Text";
 import { BlurFade } from "@/components/ui/Effects/blur-fade";
 import { ItineraryType } from "@/types/create-trip.types";
-import ActivityCardAction from "@/components/ui/actions/trip-planner/ActivityCard.action";
+import ActivityCardAction from "@/components/ui/actions/cards/ActivityCards.action";
 
 const ItineraryCard = ({ dayData }: { dayData: ItineraryType }) => {
   return (

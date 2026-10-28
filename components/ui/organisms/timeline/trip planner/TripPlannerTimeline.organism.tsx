@@ -5,7 +5,7 @@ import { H2 } from "@/components/ui/atoms/heading/heading2";
 import { BlurFade } from "@/components/ui/Effects/blur-fade";
 import ItineraryCard from "@/components/ui/actions/trip-planner/Itinerary.display";
 import { TripPlanType } from "@/types/create-trip.types";
-import HotelCardAction from "@/components/ui/actions/trip-planner/HotelCard.action";
+import HotelCardAction from "@/components/ui/actions/cards/HotelCard.action";
 
 const TripPlannerTimelineOrganism = ({
   tripPlan,
