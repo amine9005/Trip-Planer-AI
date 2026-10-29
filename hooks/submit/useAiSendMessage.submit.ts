@@ -6,7 +6,6 @@ import {
   useGetSubscriptionQuery,
   useUserQuery,
 } from "@/hooks/queries/useUser.query";
-import { useUserDataMutation } from "@/hooks/mutations/useUpdateUserData.mutation";
 import toast from "react-hot-toast";
 
 export function useAiSendMessageHook() {
@@ -22,7 +21,6 @@ export function useAiSendMessageHook() {
   const { isLoading: isLoadingUserData, data: userData } = useUserQuery();
   const { data: subscriptionData, isLoading: isLoadingSubscription } =
     useGetSubscriptionQuery(userData?.user.id);
-  const { mutateAsync: updateUserData } = useUserDataMutation();
   const messageArrayRef = useRef<MessageAISchemaType[]>(messages);
 
   const onSend = async ({ message }: { message: string }) => {
@@ -74,13 +72,6 @@ export function useAiSendMessageHook() {
       });
 
       setIsFinal(aiMsg.ui === "Final");
-
-      if (aiMsg.ui === "Final" && !subscriptionData) {
-        await updateUserData({
-          userId: userData.user.id,
-          limit: (userData.user.limit as number) - 1,
-        });
-      }
     } catch (error) {
       console.log(error);
       messageArrayRef.current.push({

@@ -32,7 +32,7 @@ const HotelCard = ({
         onError={() => {
           setFailedImage(true);
         }}
-        alt={"/hotel-building-concept.jpg"}
+        alt={hotel.hotel_name}
         className="rounded-xl object-cover w-full h-50 shadow pb-2"
       />
       <H2 className="font-semibold" size={"lg"}>

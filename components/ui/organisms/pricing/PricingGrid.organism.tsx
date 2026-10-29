@@ -39,12 +39,7 @@ export const PricingGridOrganism = ({
     );
   }
 
-  if (
-    (userData && data === undefined) ||
-    data === null ||
-    isLoadingUserData ||
-    isPending
-  ) {
+  if ((userData && data === undefined) || isLoadingUserData || isPending) {
     return (
       <div className="flex justify-center items-center h-screen">
         <div className="flex flex-col justify-center items-center gap-4">

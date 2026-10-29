@@ -7,7 +7,11 @@ type Stack = {
   node: ReactNode;
 };
 
-const randomRotateY = () => {
+const randomRotateY_mobile_screen = () => {
+  return Math.floor(Math.random() * 7) - 1;
+};
+
+const randomRotateY_md_screen = () => {
   return Math.floor(Math.random() * 21) - 10;
 };
 export const ImageStackCarousel = ({
@@ -18,6 +22,8 @@ export const ImageStackCarousel = ({
   autoplay?: boolean;
 }) => {
   const [active, setActive] = useState(0);
+
+  const [smallScreen, setSmallScreen] = useState<boolean>(true);
 
   const handleNextCopy = () => {
     setActive((prev) => (prev + 1) % stack.length);
@@ -32,6 +38,14 @@ export const ImageStackCarousel = ({
   };
 
   useEffect(() => {
+    const handle_resize = () => {
+      if (window.innerWidth > 600) {
+        setSmallScreen(false);
+      }
+    };
+
+    handle_resize();
+
     const handleNext = () => {
       setActive((prev) => (prev + 1) % stack.length);
     };
@@ -42,7 +56,7 @@ export const ImageStackCarousel = ({
   }, [autoplay, stack.length]);
 
   return (
-    <div className=" relative h-120 w-full ">
+    <div className=" relative h-120  w-full ">
       <button
         onClick={handlePrev}
         className="absolute opacity-85 cursor-pointer z-41 top-1/2 hover:scale-110 transition-transform duration-300 flex size-10 items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-800"
@@ -64,13 +78,19 @@ export const ImageStackCarousel = ({
               opacity: 0,
               scale: 0.9,
               z: -100,
-              rotate: randomRotateY(),
+              rotate: smallScreen
+                ? randomRotateY_mobile_screen()
+                : randomRotateY_md_screen(),
             }}
             animate={{
               opacity: isActive(index) ? 1 : 0.7,
               scale: isActive(index) ? 1 : 0.95,
               z: isActive(index) ? 0 : -100,
-              rotate: isActive(index) ? 0 : randomRotateY(),
+              rotate: isActive(index)
+                ? 0
+                : smallScreen
+                  ? randomRotateY_mobile_screen()
+                  : randomRotateY_md_screen(),
               zIndex: isActive(index) ? 40 : stack.length + 2 - index,
               y: isActive(index) ? [0, -80, 0] : 0,
             }}
@@ -78,7 +98,9 @@ export const ImageStackCarousel = ({
               opacity: 0,
               scale: 0.9,
               z: 100,
-              rotate: randomRotateY(),
+              rotate: smallScreen
+                ? randomRotateY_mobile_screen()
+                : randomRotateY_md_screen(),
             }}
             transition={{
               duration: 0.4,

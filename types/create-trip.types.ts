@@ -93,3 +93,10 @@ export interface ActivityType {
   time_travel_each_location: string;
   best_time_to_visit: string;
 }
+
+export interface CityList {
+  title: string;
+  description: string;
+  places: string[];
+  thumbnail: string;
+}

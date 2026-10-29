@@ -6,6 +6,7 @@ import { useAI_Mutation } from "@/hooks/mutations/useAI-Model.mutation";
 import { useUserQuery } from "@/hooks/queries/useUser.query";
 import { aiResponseToJSON } from "@/helpers/AiUtils.helper";
 import { useAiSendMessageHook } from "@/hooks/submit/useAiSendMessage.submit";
+import { useUserDataMutation } from "@/hooks/mutations/useUpdateUserData.mutation";
 
 export function useTripPlanHook() {
   const { mutateAsync: saveTripPlaMt } = useSaveTripPlanMutation();
@@ -17,6 +18,7 @@ export function useTripPlanHook() {
   const setIsLoadingResult = useAIMessagesStore(
     (state) => state.setIsLoadingResult,
   );
+  const { mutateAsync: updateUserData } = useUserDataMutation();
 
   const { data } = useUserQuery();
 
@@ -86,6 +88,10 @@ export function useTripPlanHook() {
         setTripPlan(result.trip_plan);
         // console.log("trip plan result ", result.trip_plan);
         await saveTripPlan(result.trip_plan);
+        await updateUserData({
+          userId: data.user.id,
+          limit: (data.user.limit as number) - 1,
+        });
         setUpdateMap(true);
         setSuccess(true);
       } catch (e) {

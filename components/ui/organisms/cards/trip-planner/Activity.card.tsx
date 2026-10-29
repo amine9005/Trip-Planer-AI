@@ -26,8 +26,7 @@ const ActivityCard = ({
         height={200}
         loading="eager"
         quality={75}
-
-        alt={"/travel-placeholder.jpg"}
+        alt={activity.place_name}
         className="object-cover rounded-xl w-full h-50 mb-2"
       />
       <H2 size={"lg"}>{activity.place_name}</H2>

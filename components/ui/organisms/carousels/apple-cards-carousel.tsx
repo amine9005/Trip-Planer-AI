@@ -215,10 +215,10 @@ export const Card = ({
               exit={{ opacity: 0 }}
               ref={containerRef}
               layoutId={layout ? `card-${card.title}` : undefined}
-              className="relative z-60 mx-auto my-10 h-fit max-w-5xl rounded-3xl bg-white p-4 font-sans md:p-10 dark:bg-neutral-900"
+              className="relative z-60 mx-auto my-10 h-fit max-sm:w-80 max-w-xl lg:max-w-3xl rounded-3xl bg-white p-4 font-sans md:p-10 dark:bg-neutral-900"
             >
               <button
-                className="sticky top-4 right-0 ml-auto flex h-8 w-8 items-center justify-center rounded-full bg-black dark:bg-white"
+                className="top-4 right-0 ml-auto flex h-8 w-8 items-center justify-center rounded-full bg-black dark:bg-white"
                 onClick={handleClose}
               >
                 <IconX className="h-6 w-6 text-neutral-100 dark:text-neutral-900" />
@@ -263,6 +263,8 @@ export const Card = ({
         <BlurImage
           src={card.src}
           alt={card.title}
+          width={240}
+          height={360}
           className="absolute inset-0 z-10 object-cover"
         />
       </motion.button>
@@ -280,6 +282,7 @@ export const BlurImage = ({
 }: ImageProps) => {
   const [isLoading, setLoading] = useState(true);
   return (
+    // eslint-disable-next-line @next/next/no-img-element
     <img
       className={cn(
         "h-full w-full transition duration-300",

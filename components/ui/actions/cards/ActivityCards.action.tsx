@@ -7,7 +7,7 @@ import { ActivityType } from "@/types/create-trip.types";
 const ActivityCardAction = ({ activity }: { activity: ActivityType }) => {
   const { imageSrc, setFailedImage } = useGetUnsplashImagesRetryOnFail(
     activity.place_name,
-    2,
+    3,
     "/travel-placeholder.jpg",
   );
 

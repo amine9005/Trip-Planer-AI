@@ -33,7 +33,7 @@ const TripCard = ({
         onError={() => {
           setFailedImage(true);
         }}
-        alt={"Destination Image"}
+        alt={"Trip To " + trip.destination}
         className="rounded-xl object-cover w-full h-50 shadow pb-2"
       />
       <H2 className="font-semibold" size={"lg"}>
