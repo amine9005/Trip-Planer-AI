@@ -1,10 +1,10 @@
-import Image from "next/image";
 import { ActivityType } from "@/types/create-trip.types";
 import { H2 } from "@/components/ui/atoms/heading/heading2";
 import { P } from "@/components/ui/atoms/text/Text";
 import { ExternalLink, TicketCheckIcon, Timer } from "lucide-react";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/atoms/button/button.variants";
+import { BlurImageMolecule } from "@/components/ui/molecules/blur-image/BlurImage.molecule";
 
 const ActivityCard = ({
   activity,
@@ -15,19 +15,20 @@ const ActivityCard = ({
   imageSrc: string | null;
   setFailedImage: (value: boolean) => void;
 }) => {
+  const place_holder_image = "/travel-placeholder.jpg";
+  const imgPath = imageSrc ? imageSrc : place_holder_image;
   return (
     <div className={"flex flex-col justify-between gap-2 h-120 max-h-120"}>
-      <Image
-        src={imageSrc ? imageSrc : "/travel-placeholder.jpg"}
-        onError={() => {
-          setFailedImage(true);
-        }}
+      <BlurImageMolecule
+        loading="eager"
+        className="rounded-xl object-cover w-full h-50 shadow pb-2"
         width={400}
         height={200}
-        loading="eager"
-        quality={75}
+        setFailedImage={setFailedImage}
+        url={imgPath}
         alt={activity.place_name}
-        className="object-cover rounded-xl w-full h-50 mb-2"
+        place_holder_image={place_holder_image}
+        src={imgPath}
       />
       <H2 size={"lg"}>{activity.place_name}</H2>
       <P variant={"muted"} className="line-clamp-2">

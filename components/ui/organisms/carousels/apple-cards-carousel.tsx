@@ -14,8 +14,8 @@ import {
 } from "@tabler/icons-react";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "motion/react";
-import Image, { ImageProps } from "next/image";
 import { useOutsideClick } from "@/hooks/imported/use-outside-click";
+import { BlurImageMolecule } from "@/components/ui/molecules/blur-image/BlurImage.molecule";
 
 interface CarouselProps {
   items: JSX.Element[];
@@ -202,7 +202,7 @@ export const Card = ({
     <>
       <AnimatePresence>
         {open && (
-          <div className="fixed inset-0 z-50 h-screen overflow-auto">
+          <div className="fixed inset-0 z-50 h-screen overflow-auto ">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -215,7 +215,7 @@ export const Card = ({
               exit={{ opacity: 0 }}
               ref={containerRef}
               layoutId={layout ? `card-${card.title}` : undefined}
-              className="relative z-60 mx-auto my-10 h-fit max-sm:w-80 max-w-xl lg:max-w-3xl rounded-3xl bg-white p-4 font-sans md:p-10 dark:bg-neutral-900"
+              className="relative z-60 mx-auto my-10 h-fit max-sm:w-80 max-w-xl lg:max-w-3xl rounded-3xl bg-white p-4 font-sans md:p-10 dark:bg-neutral-900 "
             >
               <button
                 className="top-4 right-0 ml-auto flex h-8 w-8 items-center justify-center rounded-full bg-black dark:bg-white"
@@ -260,8 +260,9 @@ export const Card = ({
             {card.title}
           </motion.p>
         </div>
-        <BlurImage
+        <BlurImageMolecule
           src={card.src}
+          url={card.src}
           alt={card.title}
           width={240}
           height={360}
@@ -269,35 +270,5 @@ export const Card = ({
         />
       </motion.button>
     </>
-  );
-};
-
-export const BlurImage = ({
-  height,
-  width,
-  src,
-  className,
-  alt,
-  ...rest
-}: ImageProps) => {
-  const [isLoading, setLoading] = useState(true);
-  return (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img
-      className={cn(
-        "h-full w-full transition duration-300",
-        isLoading ? "blur-sm" : "blur-0",
-        className,
-      )}
-      onLoad={() => setLoading(false)}
-      src={src as string}
-      width={width}
-      height={height}
-      loading="lazy"
-      decoding="async"
-      blurDataURL={typeof src === "string" ? src : undefined}
-      alt={alt ? alt : "Background of a beautiful view"}
-      {...rest}
-    />
   );
 };

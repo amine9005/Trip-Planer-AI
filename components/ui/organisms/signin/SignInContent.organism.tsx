@@ -21,15 +21,16 @@ const emailInputValues = {
   autoComplete: "off",
 };
 
-const passwordLabelValues = {
-  labelText: "Password",
-  href: "/request-reset-password",
-  linkText: "Forgot Password?",
-};
+// const passwordLabelValues = {
+//   labelText: "Password",
+//   href: "/request-reset-password",
+//   linkText: "Forgot Password?",
+// };
 
 const passwordInputValues = {
   name: "password",
-  labelTitle: <LabelWithSideLink values={passwordLabelValues} />,
+  labelTitle: "Password",
+  // <LabelWithSideLink values={passwordLabelValues} />,
   type: "password",
   placeholder: "Your password ",
   autoComplete: "off",

@@ -97,6 +97,7 @@ export interface ActivityType {
 export interface CityList {
   title: string;
   description: string;
+  shortDescription: string;
   places: string[];
   thumbnail: string;
 }

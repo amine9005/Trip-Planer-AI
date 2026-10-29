@@ -7,6 +7,7 @@ import GetStartedButtonMolecule from "@/components/ui/molecules/get-started-butt
 import { useUserQuery } from "@/hooks/queries/useUser.query";
 import { useTripsQuery } from "@/hooks/queries/useTripPlanner.query";
 import TripCardAction from "@/components/ui/actions/cards/TripCard.action";
+import { redirect } from "next/navigation";
 
 const AllTripsAction = () => {
   const { data: userData } = useUserQuery();
@@ -18,6 +19,10 @@ const AllTripsAction = () => {
   //   "userId ",
   //   userData?.user.id,
   // );
+
+  // if (!userData) {
+  //   redirect("/sign-in");
+  // }
 
   if (error) {
     console.log("userDataError  ", error);
@@ -53,29 +58,15 @@ const AllTripsAction = () => {
   }
 
   return (
-    <div className="relative flex mx-auto justify-center items-center w-full ">
-      <div className="relative grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5  gap-8 mt-10 max-w-7xl">
-        {data &&
-          data.map(async (item, idx) => {
-            return (
-              <BlurFade
-                onlyOnce={false}
-                key={idx}
-                delay={0.3 + idx * 0.1}
-                inView
-              >
-                <TripCardAction
-                  key={idx}
-                  trip={item}
-                  // imageSrc2={
-                  //   item.itinerary[1].activities[0].place_image_url
-                  //     ? item.itinerary[1].activities[0].place_image_url
-                  //     : undefined
-                  // }
-                />
-              </BlurFade>
-            );
-          })}
+    <div className="relative  flex mx-auto justify-center items-center w-full ">
+      <div className="relative  grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5  gap-8 mt-10 max-w-7xl">
+        {data.map((item, idx) => {
+          return (
+            <BlurFade onlyOnce={false} key={idx} delay={0.3 + idx * 0.1} inView>
+              <TripCardAction key={idx} trip={item} />
+            </BlurFade>
+          );
+        })}
       </div>
     </div>
   );

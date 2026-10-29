@@ -1,11 +1,15 @@
 import type { Metadata } from "next";
-// import { Geist, Geist_Mono, Inter } from "next/font/google";
+import {
+  //  Geist, Geist_Mono,
+  Inter,
+} from "next/font/google";
 import "./globals.css";
 import { TanStackProvider } from "@/providers/TanStackProvider";
 import Navbar2Organism from "@/components/ui/navbars/Navbar2.organism";
 import { cn } from "@/lib/utils";
+import Footer1Organism from "@/components/ui/footers/Footer1.organism";
 
-// const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -36,11 +40,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           // geistSans.variable,
           // geistMono.variable,
           "font-sans",
-          // inter.variable,
+          inter.variable,
         )}
       >
         <body className="min-h-full md:px-4 flex flex-col">{children}</body>
       </html>
+      <Footer1Organism />
     </TanStackProvider>
   );
 }

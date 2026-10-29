@@ -30,13 +30,14 @@ const PricingCard = ({
     <Card
       key={pricing.title}
       className={
-        data
+        "w-full h-full " +
+        (data
           ? pricing.title.toUpperCase() === data.plan.toUpperCase()
             ? "bg-gray-800"
             : ""
           : pricing.title.toUpperCase() === "FREE"
             ? "bg-gray-800"
-            : ""
+            : "")
       }
     >
       <CardHeader>

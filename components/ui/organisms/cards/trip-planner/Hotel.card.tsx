@@ -5,7 +5,7 @@ import { P } from "@/components/ui/atoms/text/Text";
 import { Hotel } from "@/db/models/Hotel.model";
 import { ExternalLink, Star, Wallet } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
+import { BlurImageMolecule } from "@/components/ui/molecules/blur-image/BlurImage.molecule";
 
 const HotelCard = ({
   hotel,
@@ -18,22 +18,24 @@ const HotelCard = ({
   imageSrc: string | null;
   setFailedImage: (value: boolean) => void;
 }) => {
+  const place_holder_image = "/hotel-building-concept.jpg";
+  const imgPath = imageSrc ? imageSrc : place_holder_image;
+
   return (
     <div
       key={idx}
       className="flex flex-col justify-between gap-1 h-120 max-h-120"
     >
-      <Image
-        src={imageSrc ? imageSrc : "/hotel-building-concept.jpg"}
+      <BlurImageMolecule
+        loading="eager"
+        className="rounded-xl object-cover w-full h-50 shadow pb-2"
         width={400}
         height={200}
-        loading="eager"
-        quality={75}
-        onError={() => {
-          setFailedImage(true);
-        }}
+        setFailedImage={setFailedImage}
+        url={imgPath}
         alt={hotel.hotel_name}
-        className="rounded-xl object-cover w-full h-50 shadow pb-2"
+        place_holder_image={place_holder_image}
+        src={imgPath}
       />
       <H2 className="font-semibold" size={"lg"}>
         {hotel.hotel_name}

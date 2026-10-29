@@ -9,8 +9,8 @@ import {
   Wallet,
 } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
 import { TripPlanType } from "@/types/create-trip.types";
+import { BlurImageMolecule } from "@/components/ui/molecules/blur-image/BlurImage.molecule";
 
 const TripCard = ({
   trip,
@@ -22,19 +22,21 @@ const TripCard = ({
   setFailedImage: (value: boolean) => void;
 }) => {
   // console.log("trip image: ", imageSrc);
+  const place_holder_image = "/travel-placeholder.jpg";
+  const imgPath = imageSrc ? imageSrc : place_holder_image;
+
   return (
     <div className="relative justify-between items-center flex flex-col gap-1 hover:scale-105 transition-all duration-300 hover:opacity-85 h-130 max-h-130">
-      <Image
-        src={imageSrc ? imageSrc : "/travel-placeholder.jpg"}
+      <BlurImageMolecule
+        loading="eager"
+        className="rounded-xl object-cover w-full h-50 shadow pb-2"
         width={400}
         height={200}
-        loading="eager"
-        quality={75}
-        onError={() => {
-          setFailedImage(true);
-        }}
-        alt={"Trip To " + trip.destination}
-        className="rounded-xl object-cover w-full h-50 shadow pb-2"
+        setFailedImage={setFailedImage}
+        url={imgPath}
+        alt={trip.thumbnail}
+        place_holder_image={place_holder_image}
+        src={imgPath}
       />
       <H2 className="font-semibold" size={"lg"}>
         {trip.origin} To {trip.destination}

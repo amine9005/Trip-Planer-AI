@@ -140,7 +140,7 @@ const ViewTripAction = () => {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-5 mt-2 md:mt-8">
-      <div className="col-span-3 overflow-y-auto scrollbar-none [&::-webkit-scrollbar]:hidden">
+      <div className="col-span-3 max-h-[85vh] overflow-y-auto scrollbar-none [&::-webkit-scrollbar]:hidden">
         <TripPlannerTimelineOrganism tripPlan={data!} />
       </div>
       <div className="col-span-2 ">

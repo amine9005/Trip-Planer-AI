@@ -6,6 +6,7 @@ import { P } from "@/components/ui/atoms/text/Text";
 import PricingCard from "../pricing/Pricing.card";
 import { PricingCardProps, SubscriptionDataType } from "@/types/pricing.types";
 import { User } from "better-auth";
+import { BlurFade } from "../../Effects/blur-fade";
 
 interface Props {
   error: Error | null;
@@ -67,12 +68,14 @@ export const PricingGridOrganism = ({
       <h3 className="text-xl text-center text-muted-foreground pt-4 pb-8"></h3>
       <div className="grid md:grid-cols-2 gap-8">
         {pricingList.map((pricing: PricingCardProps, idx) => (
-          <PricingCard
-            key={idx}
-            pricing={pricing}
-            data={data}
-            userData={userData}
-          />
+          <BlurFade className="w-full h-full" key={idx} delay={0.1 * idx}>
+            <PricingCard
+              key={idx}
+              pricing={pricing}
+              data={data}
+              userData={userData}
+            />
+          </BlurFade>
         ))}
       </div>
     </section>
