@@ -45,7 +45,7 @@ const Hero1Organism = () => {
           <HeroVideoDialog
             className="hidden dark:block"
             animationStyle="from-center"
-            videoSrc="https://www.youtube.com/embed/qh3NGpYRG3I?si=4rb-zSdDkVK9qxxb"
+            videoSrc=""
             thumbnailSrc="/Hero-Thumbnail.png"
             thumbnailAlt="Hero Video"
           />

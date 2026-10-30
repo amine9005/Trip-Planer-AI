@@ -194,7 +194,7 @@ export const AppleCard = ({
   return (
     <Dialog>
       <DialogTrigger>
-        <motion.button
+        <motion.div
           layoutId={layout ? `card-${card.title}` : undefined}
           onClick={handleOpen}
           className="relative z-10 flex h-80 w-56 flex-col items-start justify-start overflow-hidden rounded-3xl bg-gray-100 md:h-160 md:w-96 dark:bg-neutral-900"
@@ -222,7 +222,7 @@ export const AppleCard = ({
             height={360}
             className="absolute inset-0 z-10 object-cover"
           />
-        </motion.button>
+        </motion.div>
       </DialogTrigger>
 
       <DialogContent
@@ -231,12 +231,12 @@ export const AppleCard = ({
         className="max-h-[85vh] md:m-1 lg:m-2 overflow-scroll scrollbar-none max-sm:w-80 max-w-xl lg:max-w-3xl rounded-3xl "
       >
         <DialogClose>
-          <button
+          <span
             className="top-4 right-0 ml-auto flex h-8 w-8 items-center justify-center rounded-full bg-black dark:bg-white"
             onClick={handleClose}
           >
             <IconX className="h-6 w-6 text-neutral-100 dark:text-neutral-900" />
-          </button>
+          </span>
         </DialogClose>
         <motion.p
           layoutId={layout ? `category-${card.title}` : undefined}

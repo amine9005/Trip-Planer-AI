@@ -1,10 +1,9 @@
 import { ImageStackCarousel } from "@/components/ui/Effects/ImageStackCarousel";
 import { CityList } from "@/types/create-trip.types";
-import { motion } from "motion/react";
 import PlaceImageMolecule from "@/components/ui/molecules/trip-planner/PlaceImage.molecule";
 import CreateNewTripMolecule from "@/components/ui/molecules/create-new-trip/CreateNewTrip.molecule";
-import { BlurFade } from "../../Effects/blur-fade";
-import { P } from "../../atoms/text/Text";
+import { BlurFade } from "@/components/ui/Effects/blur-fade";
+import { P } from "@/components/ui/atoms/text/Text";
 
 const PopularCityDialog = ({ data }: { data: CityList }) => {
   const placesStack = data.places.map((name, idx) => {
