@@ -3,7 +3,7 @@ import { P } from "@/components/ui/atoms/text/Text";
 import { SuggestionsType } from "@/types/create-trip.types";
 import { DisplayType } from "@/types/general.types";
 import Link from "next/link";
-import { BlurFade } from "../../Effects/blur-fade";
+import { BlurFade } from "@/components/ui/Effects/blur-fade";
 
 const TextSuggestionsMolecule = ({
   suggestions,
@@ -11,7 +11,7 @@ const TextSuggestionsMolecule = ({
   onSend,
 }: SuggestionsType & DisplayType) => {
   return (
-    <BlurFade delay={0.2} onlyOnce={false} inView>
+    <BlurFade delay={0.2} onlyOnce={false} inView className="w-full h-full">
       <Link
         href={"/create-new-trip"}
         className={`w-full   ${display === "horizontal" ? "items-center" : "w-full "}`}

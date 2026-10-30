@@ -1,7 +1,6 @@
 "use client";
-
 import { useGetUnsplashImagesRetryOnFail } from "@/hooks/queries/useUnsplashImages.query";
-import Image from "next/image";
+import { BlurImageMolecule } from "../blur-image/BlurImage.molecule";
 interface Props {
   name: string;
   retry_count: number;
@@ -19,18 +18,21 @@ const PlaceImageMolecule = ({
     failed_image_path,
   );
 
+  const place_holder_image = "/travel-placeholder.jpg";
+  const imgPath = imageSrc ? imageSrc : place_holder_image;
+
   return (
-    <Image
-      src={imageSrc ? imageSrc : failed_image_path}
+    <BlurImageMolecule
+      loading="eager"
+      className="rounded-xl object-cover w-full h-120 shadow pb-2"
       width={400}
       height={200}
-      loading="eager"
-      quality={75}
-      onError={() => {
-        setFailedImage(true);
-      }}
+      setFailedImage={setFailedImage}
+      url={imgPath}
+
       alt={name}
-      className="rounded-xl object-cover w-full h-120 shadow pb-2"
+      place_holder_image={place_holder_image}
+      src={imgPath}
     />
   );
 };

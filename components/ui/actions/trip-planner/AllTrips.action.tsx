@@ -7,7 +7,6 @@ import GetStartedButtonMolecule from "@/components/ui/molecules/get-started-butt
 import { useUserQuery } from "@/hooks/queries/useUser.query";
 import { useTripsQuery } from "@/hooks/queries/useTripPlanner.query";
 import TripCardAction from "@/components/ui/actions/cards/TripCard.action";
-import { redirect } from "next/navigation";
 
 const AllTripsAction = () => {
   const { data: userData } = useUserQuery();

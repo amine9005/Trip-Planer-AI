@@ -38,7 +38,7 @@ const TripPlannerTimelineOrganism = ({
     })),
   ];
   return (
-    <div className="relative lg:mx-3 min-h-[85vh] scrollbar-none [&::-webkit-scrollbar]:hidden w-full col-span-2 gap-2">
+    <div className="relative lg:mx-3 overflow-y-auto h-[85vh] max-h-[85vh] scrollbar-none [&::-webkit-scrollbar]:hidden w-full col-span-2 gap-2">
       <Timeline
         data={data}
         mainTitle={

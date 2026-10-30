@@ -29,6 +29,8 @@ const HotelCard = ({
       <BlurImageMolecule
         loading="eager"
         className="rounded-xl object-cover w-full h-50 shadow pb-2"
+        quality={75}
+
         width={400}
         height={200}
         setFailedImage={setFailedImage}
