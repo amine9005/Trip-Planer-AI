@@ -13,9 +13,16 @@ import {
   IconX,
 } from "@tabler/icons-react";
 import { cn } from "@/lib/utils";
-import { AnimatePresence, motion } from "motion/react";
+import { motion } from "motion/react";
 import { useOutsideClick } from "@/hooks/imported/use-outside-click";
 import { BlurImageMolecule } from "@/components/ui/molecules/blur-image/BlurImage.molecule";
+import { BlurFade } from "@/components/ui/Effects/blur-fade";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogTrigger,
+} from "@/components/ui/atoms/dialog/dialog";
 
 interface CarouselProps {
   items: JSX.Element[];
@@ -91,16 +98,10 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
     >
       <div className="relative w-full">
         <div
-          className="flex w-full overflow-x-scroll overscroll-x-auto scroll-smooth py-10 scrollbar-none md:py-20"
+          className="flex w-full overflow-x-scroll overscroll-x-auto scroll-smooth py-10 scrollbar-none md:pt-20 md:pb-10"
           ref={carouselRef}
           onScroll={checkScrollability}
         >
-          <div
-            className={cn(
-              "absolute right-0 z-1000 h-auto w-[5%] overflow-hidden bg-linear-to-l",
-            )}
-          ></div>
-
           <div
             className={cn(
               "flex flex-row justify-start gap-4 pl-4",
@@ -108,50 +109,42 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
             )}
           >
             {items.map((item, index) => (
-              <motion.div
-                initial={{
-                  opacity: 0,
-                  y: 20,
-                }}
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                  transition: {
-                    duration: 0.5,
-                    delay: 0.2 * index,
-                    ease: "easeOut",
-                  },
-                }}
+              <BlurFade
+                delay={0.1 + index * 0.1}
+                inView
+                onlyOnce={false}
                 key={"card" + index}
                 className="rounded-3xl last:pr-[5%] md:last:pr-[33%]"
               >
                 {item}
-              </motion.div>
+              </BlurFade>
             ))}
           </div>
         </div>
-        <div className="mr-10 flex justify-end gap-2">
-          <button
-            className="relative z-40 flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 disabled:opacity-50"
-            onClick={scrollLeft}
-            disabled={!canScrollLeft}
-          >
-            <IconArrowNarrowLeft className="h-6 w-6 text-gray-500" />
-          </button>
-          <button
-            className="relative z-40 flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 disabled:opacity-50"
-            onClick={scrollRight}
-            disabled={!canScrollRight}
-          >
-            <IconArrowNarrowRight className="h-6 w-6 text-gray-500" />
-          </button>
-        </div>
+        <BlurFade delay={0.2} onlyOnce={false} inView>
+          <div className="mr-10 flex justify-end gap-2">
+            <button
+              className="relative z-40 flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 disabled:opacity-50"
+              onClick={scrollLeft}
+              disabled={!canScrollLeft}
+            >
+              <IconArrowNarrowLeft className="h-6 w-6 text-gray-500" />
+            </button>
+            <button
+              className="relative z-40 flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 disabled:opacity-50"
+              onClick={scrollRight}
+              disabled={!canScrollRight}
+            >
+              <IconArrowNarrowRight className="h-6 w-6 text-gray-500" />
+            </button>
+          </div>
+        </BlurFade>
       </div>
     </CarouselContext.Provider>
   );
 };
 
-export const Card = ({
+export const AppleCard = ({
   card,
   index,
   layout = false,
@@ -199,76 +192,66 @@ export const Card = ({
   useOutsideClick(containerRef, () => handleClose());
 
   return (
-    <>
-      <AnimatePresence>
-        {open && (
-          <div className="fixed inset-0 z-50 h-screen overflow-auto ">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 h-full w-full bg-black/80 backdrop-blur-lg"
-            />
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              ref={containerRef}
-              layoutId={layout ? `card-${card.title}` : undefined}
-              className="relative z-60 mx-auto my-10 h-fit max-sm:w-80 max-w-xl lg:max-w-3xl rounded-3xl bg-white p-4 font-sans md:p-10 dark:bg-neutral-900 "
+    <Dialog>
+      <DialogTrigger>
+        <motion.button
+          layoutId={layout ? `card-${card.title}` : undefined}
+          onClick={handleOpen}
+          className="relative z-10 flex h-80 w-56 flex-col items-start justify-start overflow-hidden rounded-3xl bg-gray-100 md:h-160 md:w-96 dark:bg-neutral-900"
+        >
+          <div className="pointer-events-none absolute inset-x-0 top-0 z-30 h-full bg-linear-to-b from-black/50 via-transparent to-transparent" />
+          <div className="relative z-40 p-8">
+            <motion.p
+              layoutId={layout ? `category-${card.category}` : undefined}
+              className="text-left font-sans text-sm font-medium text-white md:text-base"
             >
-              <button
-                className="top-4 right-0 ml-auto flex h-8 w-8 items-center justify-center rounded-full bg-black dark:bg-white"
-                onClick={handleClose}
-              >
-                <IconX className="h-6 w-6 text-neutral-100 dark:text-neutral-900" />
-              </button>
-              <motion.p
-                layoutId={layout ? `category-${card.title}` : undefined}
-                className="text-base font-medium text-black dark:text-white"
-              >
-                {card.category}
-              </motion.p>
-              <motion.p
-                layoutId={layout ? `title-${card.title}` : undefined}
-                className="mt-4 text-2xl font-semibold text-neutral-700 md:text-5xl dark:text-white"
-              >
-                {card.title}
-              </motion.p>
-              <div className="py-10">{card.content}</div>
-            </motion.div>
+              {card.category}
+            </motion.p>
+            <motion.p
+              layoutId={layout ? `title-${card.title}` : undefined}
+              className="mt-2 max-w-xs text-left font-sans text-xl font-semibold text-balance text-white md:text-3xl"
+            >
+              {card.title}
+            </motion.p>
           </div>
-        )}
-      </AnimatePresence>
-      <motion.button
-        layoutId={layout ? `card-${card.title}` : undefined}
-        onClick={handleOpen}
-        className="relative z-10 flex h-80 w-56 flex-col items-start justify-start overflow-hidden rounded-3xl bg-gray-100 md:h-160 md:w-96 dark:bg-neutral-900"
+          <BlurImageMolecule
+            src={card.src}
+            url={card.src}
+            alt={card.title}
+            width={240}
+            height={360}
+            className="absolute inset-0 z-10 object-cover"
+          />
+        </motion.button>
+      </DialogTrigger>
+
+      <DialogContent
+        showCloseButton={false}
+        ref={containerRef}
+        className="max-h-[85vh] md:m-1 lg:m-2 overflow-scroll scrollbar-none max-sm:w-80 max-w-xl lg:max-w-3xl rounded-3xl "
       >
-        <div className="pointer-events-none absolute inset-x-0 top-0 z-30 h-full bg-linear-to-b from-black/50 via-transparent to-transparent" />
-        <div className="relative z-40 p-8">
-          <motion.p
-            layoutId={layout ? `category-${card.category}` : undefined}
-            className="text-left font-sans text-sm font-medium text-white md:text-base"
+        <DialogClose>
+          <button
+            className="top-4 right-0 ml-auto flex h-8 w-8 items-center justify-center rounded-full bg-black dark:bg-white"
+            onClick={handleClose}
           >
-            {card.category}
-          </motion.p>
-          <motion.p
-            layoutId={layout ? `title-${card.title}` : undefined}
-            className="mt-2 max-w-xs text-left font-sans text-xl font-semibold text-balance text-white md:text-3xl"
-          >
-            {card.title}
-          </motion.p>
-        </div>
-        <BlurImageMolecule
-          src={card.src}
-          url={card.src}
-          alt={card.title}
-          width={240}
-          height={360}
-          className="absolute inset-0 z-10 object-cover"
-        />
-      </motion.button>
-    </>
+            <IconX className="h-6 w-6 text-neutral-100 dark:text-neutral-900" />
+          </button>
+        </DialogClose>
+        <motion.p
+          layoutId={layout ? `category-${card.title}` : undefined}
+          className="text-base font-medium text-black dark:text-white"
+        >
+          {card.category}
+        </motion.p>
+        <motion.p
+          layoutId={layout ? `title-${card.title}` : undefined}
+          className="mt-4 text-2xl font-semibold text-neutral-700 md:text-5xl dark:text-white"
+        >
+          {card.title}
+        </motion.p>
+        <div className="py-10">{card.content}</div>
+      </DialogContent>
+    </Dialog>
   );
 };

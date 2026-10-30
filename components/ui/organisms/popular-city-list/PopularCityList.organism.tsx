@@ -1,7 +1,7 @@
 "use client";
 import {
+  AppleCard,
   Carousel,
-  Card,
 } from "@/components/ui/organisms/carousels/apple-cards-carousel";
 import { PopularCityListData } from "@/components/ui/constants/trip-planner/TripPlanner.constants";
 import PopularCityDialog from "@/components/ui/organisms/dialog/PopularCity.dialog";
@@ -16,7 +16,7 @@ export function PopularCityListOrganism() {
   }));
 
   const cards = data.map((card, index) => (
-    <Card key={card.src} card={card} index={index} />
+    <AppleCard key={card.src} card={card} index={index} />
   ));
 
   return (

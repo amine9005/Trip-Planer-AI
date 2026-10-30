@@ -3,6 +3,8 @@ import { CityList } from "@/types/create-trip.types";
 import { motion } from "motion/react";
 import PlaceImageMolecule from "@/components/ui/molecules/trip-planner/PlaceImage.molecule";
 import CreateNewTripMolecule from "@/components/ui/molecules/create-new-trip/CreateNewTrip.molecule";
+import { BlurFade } from "../../Effects/blur-fade";
+import { P } from "../../atoms/text/Text";
 
 const PopularCityDialog = ({ data }: { data: CityList }) => {
   const placesStack = data.places.map((name, idx) => {
@@ -20,59 +22,35 @@ const PopularCityDialog = ({ data }: { data: CityList }) => {
 
   return (
     <div className="w-full grid grid-cols-1 gap-20">
-      <ImageStackCarousel stack={placesStack} />
+      <BlurFade delay={0.1}>
+        <ImageStackCarousel stack={placesStack} />
+      </BlurFade>
       <div className="flex w-full flex-col justify-between py-4">
-        <motion.div
-          initial={{
-            y: 20,
-            opacity: 0,
-          }}
-          animate={{
-            y: 0,
-            opacity: 1,
-          }}
-          exit={{
-            y: -20,
-            opacity: 0,
-          }}
-          transition={{
-            duration: 0.2,
-            ease: "easeInOut",
-          }}
-        >
-          <h3 className="text-2xl font-bold text-black dark:text-white">
-            {data.title}
-          </h3>
+        <div>
+          <BlurFade delay={0.1} inView>
+            <h3 className="text-2xl font-bold text-black dark:text-white">
+              {data.title}
+            </h3>
+          </BlurFade>
           {/* <p className="text-sm text-gray-500 dark:text-neutral-500">
               Project Sub Title
             </p> */}
-          <motion.p className="mt-4 text-lg text-gray-500 dark:text-neutral-300">
+          <P className="mt-4 text-lg text-gray-500 dark:text-neutral-300">
             {data.description.split(" ").map((word: string, index: number) => (
-              <motion.span
+              <BlurFade
                 key={index}
-                initial={{
-                  filter: "blur(10px)",
-                  opacity: 0,
-                  y: 5,
-                }}
-                animate={{
-                  filter: "blur(0px)",
-                  opacity: 1,
-                  y: 0,
-                }}
-                transition={{
-                  duration: 0.2,
-                  ease: "easeInOut",
-                  delay: 0.02 * index,
-                }}
+                inView
+                delay={0.2 + index * 0.02}
                 className="inline-block"
               >
                 {word}&nbsp;
-              </motion.span>
+              </BlurFade>
             ))}
-          </motion.p>
-          <CreateNewTripMolecule destination={data.title} />
-        </motion.div>
+          </P>
+          <BlurFade delay={0.3} inView>
+            <CreateNewTripMolecule destination={data.title} />
+          </BlurFade>
+        </div>
       </div>
     </div>
   );
