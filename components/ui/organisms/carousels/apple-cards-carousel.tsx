@@ -122,7 +122,7 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
           </div>
         </div>
         <BlurFade delay={0.2} onlyOnce={false} inView>
-          <div className="mr-10 flex justify-end gap-2">
+          <div className="mr-10 flex justify-end gap-2 pb-4">
             <button
               className="relative z-40 flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 disabled:opacity-50"
               onClick={scrollLeft}

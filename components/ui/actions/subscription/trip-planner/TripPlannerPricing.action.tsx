@@ -48,10 +48,10 @@ export const TripPlannerPricing = () => {
   const { data: userData, isPending: isLoadingUserData } = useUserQuery();
   const { error, data, isPending } = useGetSubscriptionQuery(userData?.user.id);
 
-  console.log(
-    "data ",
-    JSON.stringify(data) + " isPending " + isPending + " error " + error,
-  );
+  // console.log(
+  //   "data ",
+  //   JSON.stringify(data) + " isPending " + isPending + " error " + error,
+  // );
 
   return (
     <PricingGridContent
